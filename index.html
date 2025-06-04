@@ -3,146 +3,202 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>GEORGES QSO LOG</title>
+<title>GEORGES QSO LOG - 26-CT-1664</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
   body {
-    background: linear-gradient(135deg, #1a2a6c, #0055aa, #00aaff);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #e0eaff;
+    background: #000011;
+    color: #66ccff;
+    font-family: 'Orbitron', monospace, monospace;
     margin: 0;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
+    padding: 0;
+    overflow-x: hidden;
+  }
+  h1 {
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: #3399ff;
+    text-shadow: 0 0 10px #33aaff;
   }
   .container {
     display: flex;
+    justify-content: center;
     align-items: flex-start;
-    gap: 20px;
-    max-width: 1200px;
-    width: 100%;
+    gap: 10px;
+    padding: 10px;
   }
-  .side-image {
-    border: 4px solid #0af;
+  .image-container {
+    width: 150px;
+    height: 220px;
+    border: 4px solid #3399ff;
     border-radius: 10px;
-    box-shadow: 0 0 15px #0af;
-    max-width: 150px;
-    flex-shrink: 0;
-  }
-  .side-label {
-    text-align: center;
-    margin-top: 8px;
-    font-weight: bold;
-    color: #0af;
-    text-shadow: 0 0 5px #0af;
-    font-size: 0.9rem;
-  }
-  .image-wrapper {
+    box-sizing: border-box;
+    animation: fast-flash 1.2s infinite alternate;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 5px;
+    background: #001122;
   }
-  main {
-    flex-grow: 1;
-    background: rgba(10, 30, 80, 0.7);
+  .image-container img {
+    max-width: 100%;
+    max-height: 180px;
+    border-radius: 6px;
+  }
+  .label {
+    margin-top: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #66ccff;
+    text-shadow: 0 0 6px #3399ff;
+  }
+  @keyframes fast-flash {
+    0% { border-color: #3399ff; box-shadow: 0 0 15px #3399ff; }
+    100% { border-color: #66ccff; box-shadow: 0 0 25px #66ccff; }
+  }
+
+  .table-wrapper {
+    flex: 1;
+    max-width: 850px;
+    max-height: 650px;
+    overflow-y: auto;
+    border: 2px solid #3399ff;
     border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 0 20px #0af;
-    overflow-x: auto;
+    background: #001122cc;
+    animation: slow-fade 4s ease-in-out infinite alternate;
+    box-sizing: border-box;
   }
-  h1 {
-    color: #00aaff;
-    text-align: center;
-    margin-bottom: 10px;
-    text-shadow: 0 0 10px #0af;
+  @keyframes slow-fade {
+    0%, 100% { box-shadow: 0 0 20px #3399ff; }
+    50% { box-shadow: 0 0 10px #0055cc; }
   }
   table {
     border-collapse: separate;
-    border-spacing: 20px 0; /* horizontal gap between columns */
+    border-spacing: 10px 0; /* horizontal spacing between columns */
     width: 100%;
-    color: #cce7ff;
+    color: #66ccff;
+    font-size: 14px;
   }
-  th, td {
-    padding: 6px 10px;
+  thead th {
+    border-bottom: 2px solid #3399ff;
+    padding-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
     text-align: left;
-    border-bottom: 1px solid #0af8;
-    min-width: 90px;
   }
-  th {
-    color: #00ddff;
-    border-bottom: 2px solid #0af;
-    text-shadow: 0 0 5px #0af;
+  tbody tr:nth-child(odd) {
+    background: #002244;
   }
-  tr:hover {
-    background: rgba(0, 170, 255, 0.2);
-    transition: background 0.3s ease;
+  tbody tr:hover {
+    background: #004488cc;
+  }
+  tbody td {
+    padding: 5px 8px;
+    white-space: nowrap;
+  }
+  /* Insert blank columns for gaps as empty <td> */
+  td.empty-cell {
+    background: transparent;
+    border: none;
+    padding: 0;
+    width: 12px;
   }
 </style>
 </head>
 <body>
-  <div class="container">
-    <div class="image-wrapper">
-      <img src="https://i.postimg.cc/ryfF6F9B/494740562-1046815160662024-7184481897838236543-n.jpg" alt="Antenna" class="side-image" />
-      <div class="side-label">Antenna</div>
-    </div>
-    <main>
-      <h1>26-CT-1664 - GEORGES QSO LOG</h1>
-      <table id="qsoTable">
-        <thead>
-          <tr>
-            <th>Date</th><th></th>
-            <th>Time</th><th></th>
-            <th>Name</th><th></th>
-            <th>My Signal</th><th></th>
-            <th>Location</th><th></th>
-            <th>Contact Name</th><th></th>
-            <th>Frequency</th><th></th>
-            <th>Mode</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </main>
-    <div class="image-wrapper">
-      <img src="https://i.postimg.cc/hGmfcWG9/495291255-1051152326894974-7591054905816117297-n.jpg" alt="Rig" class="side-image" />
-      <div class="side-label">Rig</div>
-    </div>
+
+<h1>GEORGES QSO LOG - 26-CT-1664</h1>
+
+<div class="container">
+  <div class="image-container" style="animation-duration: 0.8s;">
+    <img src="https://i.postimg.cc/hGmfcWG9/495291255-1051152326894974-7591054905816117297-n.jpg" alt="Rig" />
+    <div class="label">Rig</div>
   </div>
 
+  <div class="table-wrapper">
+    <table id="qsoTable">
+      <thead>
+        <tr>
+          <th>Date</th><td class="empty-cell"></td>
+          <th>Time</th><td class="empty-cell"></td>
+          <th>Name</th><td class="empty-cell"></td>
+          <th>My Signal</th><td class="empty-cell"></td>
+          <th>Location</th><td class="empty-cell"></td>
+          <th>Contact</th><td class="empty-cell"></td>
+          <th>Frequency</th><td class="empty-cell"></td>
+          <th>Mode</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Data loaded dynamically -->
+      </tbody>
+    </table>
+  </div>
+
+  <div class="image-container" style="animation-duration: 0.8s;">
+    <img src="https://i.postimg.cc/ryfF6F9B/494740562-1046815160662024-7184481897838236543-n.jpg" alt="Antenna" />
+    <div class="label">Antenna</div>
+  </div>
+</div>
+
 <script>
+  const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQn_XSyS8DIfkZfQr8g1NDN4ZJLeO3LnOR87tOj3d1GybMhUCS0gtyyyKcvUshmFfGefofdlYcuDlqI/pub?output=csv";
+
   async function fetchAndUpdate() {
     try {
-      const response = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vQn_XSyS8DIfkZfQr8g1NDN4ZJLeO3LnOR87tOj3d1GybMhUCS0gtyyyKcvUshmFfGefofdlYcuDlqI/pub?output=csv');
-      const csvText = await response.text();
+      const response = await fetch(csvUrl);
+      if (!response.ok) throw new Error('Network response was not ok');
+      const text = await response.text();
 
-      // Parse CSV
-      const rows = csvText.trim().split('\n').map(row => row.split(','));
-      const tbody = document.querySelector('#qsoTable tbody');
+      const rows = text.trim().split('\n').map(line => line.split(','));
+      const tbody = document.querySelector("#qsoTable tbody");
       tbody.innerHTML = '';
 
-      // Skip header row, assume first row is headers
-      for(let i = 1; i < rows.length; i++) {
+      // Skip header row from CSV if exists, or handle accordingly
+      for(let i=1; i<rows.length; i++) {
         const row = rows[i];
-        // Adjust to your column order in CSV: Date, Time, Name, My Signal, Location, Contact Name, Frequency, Mode
+        // Assuming CSV columns in order: Date,Time,Name,MySignal,Location,Contact,Frequency,Mode
+        // Create TR and insert TDs with gaps between each
         const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td>${row[0]}</td><td></td>
-          <td>${row[1]}</td><td></td>
-          <td>${row[2]}</td><td></td>
-          <td>${row[3]}</td><td></td>
-          <td>${row[4]}</td><td></td>
-          <td>${row[5]}</td><td></td>
-          <td>${row[6]}</td><td></td>
-          <td>${row[7]}</td>
-        `;
+
+        const columns = [
+          row[0], // Date
+          row[1], // Time
+          row[2], // Name
+          row[3], // My Signal
+          row[4], // Location
+          row[5], // Contact
+          row[6], // Frequency
+          row[7]  // Mode
+        ];
+
+        columns.forEach((text, idx) => {
+          // Append data cell
+          const td = document.createElement('td');
+          td.textContent = text;
+          tr.appendChild(td);
+
+          // Add empty gap cell after each column except last
+          if(idx < columns.length - 1) {
+            const emptyTd = document.createElement('td');
+            emptyTd.classList.add('empty-cell');
+            tr.appendChild(emptyTd);
+          }
+        });
+
         tbody.appendChild(tr);
       }
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error('Error loading CSV:', error);
     }
   }
 
   fetchAndUpdate();
-  setInterval(fetchAndUpdate, 30000); // Update every 30 seconds
+  setInterval(fetchAndUpdate, 30000); // update every 30 seconds
 </script>
+
 </body>
 </html>
