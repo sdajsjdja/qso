@@ -5,15 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>GEORGES QSO LOG - 26-CT-1664</title>
 <style>
-  /* Base styles */
+  /* === Original Desktop Layout Styles === */
   body {
     font-family: Arial, sans-serif;
     background: #111a2a;
     color: #d0e6ff;
     margin: 0;
     padding: 20px;
-    overflow-x: hidden;
   }
+
   h1 {
     text-align: center;
     margin-bottom: 1rem;
@@ -21,46 +21,38 @@
     text-shadow: 0 0 10px #00d4ff;
   }
 
-  .container {
+  .main-container {
     display: flex;
-    gap: 20px;
     justify-content: center;
     align-items: flex-start;
-  }
-
-  /* Images container */
-  .images {
-    display: flex;
-    flex-direction: column;
     gap: 20px;
   }
 
-  .image-box {
+  /* Left and right image containers */
+  .side-image {
+    width: 220px;
     border: 3px solid #00a8ff;
     border-radius: 8px;
     padding: 5px;
     box-shadow: 0 0 15px #00a8ff;
     animation: flashFast 1.5s infinite alternate;
-    width: 200px;
+    text-align: center;
+    background: #111a2a;
   }
-
-  .image-box img {
+  .side-image img {
     width: 100%;
     height: auto;
-    display: block;
     border-radius: 5px;
   }
-
-  .image-label {
-    text-align: center;
+  .side-image-label {
     margin-top: 5px;
     font-weight: bold;
     color: #00c0ff;
   }
 
-  /* QSO table container */
+  /* QSO Container */
   .qso-container {
-    max-width: 850px;
+    max-width: 1000px;
     overflow-x: auto;
     border: 2px solid #007acc;
     border-radius: 10px;
@@ -72,7 +64,8 @@
     border-collapse: separate;
     border-spacing: 0 15px; /* vertical spacing between rows */
     width: 100%;
-    min-width: 800px; /* to enable horizontal scroll on desktop */
+    min-width: 900px; /* ensure horizontal scroll if narrow */
+    color: #d0e6ff;
   }
 
   thead tr th {
@@ -89,10 +82,9 @@
 
   tbody tr td {
     padding: 10px 12px;
-    color: #d0e6ff;
   }
 
-  /* Add 1 column spacing between main columns by empty td */
+  /* Spacer column for gaps */
   td.spacer {
     width: 15px;
     background: transparent;
@@ -109,48 +101,54 @@
     100% { box-shadow: 0 0 30px #00e0ff; }
   }
 
-  /* MOBILE STYLES */
+  /* === MOBILE ONLY === */
   @media (max-width: 720px) {
-    .container {
+    body {
+      padding: 10px;
+    }
+
+    .main-container {
       flex-direction: column;
       align-items: center;
-    }
-
-    .images {
-      flex-direction: row;
       gap: 15px;
-      margin-bottom: 20px;
     }
 
-    .image-box {
-      width: 120px;
-      animation: flashFast 0.75s infinite alternate;
+    /* Images stacked horizontally above QSO log */
+    .side-image {
+      width: 140px;
+      animation: flashFast 0.8s infinite alternate;
+      margin-bottom: 0;
     }
-
-    .qso-container {
-      max-width: 100%;
-      overflow-x: visible; /* no horizontal scroll */
-      animation: none;
-      border: 2px solid #004f7f;
-    }
-
-    table {
-      min-width: 0; /* remove min width for no scroll */
-      border-spacing: 0;
+    /* Place both images in a row on mobile */
+    .images-row {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
       width: 100%;
     }
 
-    thead {
-      display: none; /* hide header on mobile */
+    /* QSO Container adjustments */
+    .qso-container {
+      max-width: 100%;
+      overflow-x: visible; /* disable horizontal scroll on mobile */
+      animation: none;
+      border: 2px solid #004f7f;
+      box-shadow: none;
     }
 
+    /* Hide table header */
+    thead {
+      display: none;
+    }
+
+    /* Make each row a block "card" */
     tbody tr {
       display: block;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       background: #123054;
       border-radius: 12px;
       padding: 10px;
-      box-shadow: 0 0 12px #005ea8;
+      box-shadow: 0 0 10px #005ea8;
     }
 
     tbody tr td {
@@ -158,66 +156,68 @@
       justify-content: space-between;
       padding: 6px 10px;
       border-bottom: 1px solid #004f7f;
-      color: #a0d4ff;
       font-size: 14px;
+      color: #a0d4ff;
     }
 
     tbody tr td:last-child {
       border-bottom: none;
     }
 
-    /* Label on left, value on right */
+    /* Spacer cells hidden on mobile */
+    td.spacer {
+      display: none;
+    }
+
+    /* Add label before value for each cell */
     tbody tr td::before {
       content: attr(data-label);
       font-weight: bold;
       color: #00c0ff;
       flex: 1;
     }
-
     tbody tr td span.value {
       flex: 1;
       text-align: right;
       color: #d0e6ff;
-    }
-
-    td.spacer {
-      display: none; /* hide spacer on mobile */
     }
   }
 </style>
 </head>
 <body>
   <h1>GEORGES QSO LOG - 26-CT-1664</h1>
-  <div class="container">
-    <div class="images">
-      <div class="image-box">
-        <img src="https://i.postimg.cc/hGmfcWG9/495291255-1051152326894974-7591054905816117297-n.jpg" alt="Rig" />
-        <div class="image-label">Rig</div>
-      </div>
-      <div class="image-box">
-        <img src="https://i.postimg.cc/ryfF6F9B/494740562-1046815160662024-7184481897838236543-n.jpg" alt="Antenna" />
-        <div class="image-label">Antenna</div>
-      </div>
+  <div class="main-container">
+
+    <div class="side-image" id="leftImage">
+      <img src="https://i.postimg.cc/hGmfcWG9/495291255-1051152326894974-7591054905816117297-n.jpg" alt="Rig" />
+      <div class="side-image-label">Rig</div>
     </div>
+
     <div class="qso-container">
       <table id="qsoTable">
         <thead>
           <tr>
-            <th>Date</th><th class="spacer"></th>
-            <th>Time</th><th class="spacer"></th>
-            <th>Name</th><th class="spacer"></th>
-            <th>My Signal</th><th class="spacer"></th>
-            <th>Location</th><th class="spacer"></th>
-            <th>Contact Name</th><th class="spacer"></th>
-            <th>Frequency</th><th class="spacer"></th>
+            <th>Date</th><td class="spacer"></td>
+            <th>Time</th><td class="spacer"></td>
+            <th>Name</th><td class="spacer"></td>
+            <th>My Signal</th><td class="spacer"></td>
+            <th>Location</th><td class="spacer"></td>
+            <th>Contact Name</th><td class="spacer"></td>
+            <th>Frequency</th><td class="spacer"></td>
             <th>Mode</th>
           </tr>
         </thead>
         <tbody id="qsoBody">
-          <!-- Data rows inserted by JS -->
+          <!-- Rows dynamically inserted here -->
         </tbody>
       </table>
     </div>
+
+    <div class="side-image" id="rightImage">
+      <img src="https://i.postimg.cc/ryfF6F9B/494740562-1046815160662024-7184481897838236543-n.jpg" alt="Antenna" />
+      <div class="side-image-label">Antenna</div>
+    </div>
+
   </div>
 
 <script>
@@ -244,7 +244,7 @@
 
         const tr = document.createElement('tr');
 
-        // Helper to add td with data-label for mobile
+        // Helper function to create td with data-label + span.value for mobile
         function createCell(label, val) {
           const td = document.createElement('td');
           td.setAttribute('data-label', label);
@@ -255,6 +255,7 @@
           return td;
         }
 
+        // Add cells with spacer td between main columns
         tr.appendChild(createCell('Date', cols[0]));
         tr.appendChild(createSpacer());
         tr.appendChild(createCell('Time', cols[1]));
