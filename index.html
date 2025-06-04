@@ -2,135 +2,168 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>26-CT-1664 | GEORGE’S QSO LOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>26-CT-1664 | GEORGE'S QSO LOG</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
-      color: #fff;
-      text-align: center;
       margin: 0;
-      padding: 20px;
+      padding: 0;
+      background: linear-gradient(to right, #000428, #004e92);
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      overflow-x: hidden;
     }
+
     h1 {
-      color: #00aaff;
-      text-shadow: 0 0 10px #00aaff;
+      text-align: center;
+      font-size: 3rem;
+      color: #66ccff;
+      text-shadow: 0 0 10px #66ccff;
+      margin-top: 20px;
     }
+
     .container {
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      gap: 40px;
-      flex-wrap: wrap;
+      gap: 30px;
+      padding: 40px;
     }
+
     .images {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 20px;
-    }
-    .images img {
+      gap: 10px;
       max-width: 200px;
-      border: 3px solid #00aaff;
-      border-radius: 10px;
-      box-shadow: 0 0 20px #00aaff;
     }
-    .images .label {
+
+    .images img {
+      width: 100%;
+      border: 3px solid #66ccff;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #66ccff;
+    }
+
+    .images label {
+      text-align: center;
       margin-top: 5px;
       font-weight: bold;
-      color: #aaddff;
+      color: #66ccff;
+      text-shadow: 0 0 5px #66ccff;
     }
+
     table {
-      border-collapse: separate;
-      border-spacing: 10px 0;
-      background: rgba(255, 255, 255, 0.05);
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 900px;
+      background-color: rgba(0, 0, 0, 0.7);
       border-radius: 10px;
       overflow: hidden;
+      box-shadow: 0 0 20px #66ccff;
+      animation: fadeIn 2s ease-in-out;
     }
+
     th, td {
       padding: 10px 15px;
-      border-radius: 5px;
+      text-align: center;
+      border: 1px solid #66ccff;
     }
+
     th {
-      background: #00aaff;
-      color: white;
-      text-shadow: 1px 1px 2px black;
+      background-color: #003366;
+      color: #66ccff;
+      text-transform: uppercase;
     }
+
     td {
-      background: rgba(255, 255, 255, 0.1);
-      transition: background 0.3s;
+      color: #ffffff;
+      background-color: rgba(0, 0, 51, 0.5);
     }
-    td:hover {
-      background: rgba(255, 255, 255, 0.3);
+
+    td:nth-child(odd) {
+      background-color: rgba(0, 0, 70, 0.4);
     }
-    caption {
-      caption-side: top;
-      margin-bottom: 10px;
-      font-size: 1.2em;
-      font-weight: bold;
-      color: #00ffcc;
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
-  <h1>26-CT-1664 | GEORGE’S QSO LOG</h1>
+  <h1>26-CT-1664 — GEORGE'S QSO LOG</h1>
+
   <div class="container">
+    <!-- Left Image: Rig -->
     <div class="images">
-      <img src="https://media.discordapp.net/attachments/1272935566035652695/1379946819055915028/495291255_1051152326894974_7591054905816117297_n.jpg?format=webp&width=642&height=856" alt="Rig" />
-      <div class="label">Rig</div>
-      <img src="https://media.discordapp.net/attachments/1272935566035652695/1379946818619703377/494740562_1046815160662024_7184481897838236543_n.jpg?format=webp&width=642&height=856" alt="Antenna" />
-      <div class="label">Antenna</div>
+      <img src="https://media.discordapp.net/attachments/1272935566035652695/1379946819055915028/495291255_1051152326894974_7591054905816117297_n.jpg?format=webp&width=300" alt="Rig">
+      <label>My Rig</label>
     </div>
+
+    <!-- Main QSO Log Table -->
     <table id="qso-log">
-      <caption>LIVE QSO LOG</caption>
       <thead>
         <tr>
-          <th>Time</th><th></th>
-          <th>Date</th><th></th>
-          <th>Contact</th><th></th>
-          <th>Division</th><th></th>
-          <th>My Signal</th><th></th>
-          <th>Notes</th>
+          <th>Time</th>
+          <th></th>
+          <th>Date</th>
+          <th></th>
+          <th>Location</th>
+          <th></th>
+          <th>Name</th>
+          <th></th>
+          <th>My Signal</th>
         </tr>
       </thead>
       <tbody>
-        <!-- Data will be inserted here -->
+        <!-- Content will load from the Google Sheet -->
       </tbody>
     </table>
+
+    <!-- Right Image: Antenna -->
+    <div class="images">
+      <img src="https://media.discordapp.net/attachments/1272935566035652695/1379946818619703377/494740562_1046815160662024_7184481897838236543_n.jpg?format=webp&width=300" alt="Antenna">
+      <label>My Antenna</label>
+    </div>
   </div>
 
   <script>
-    async function fetchCSV() {
+    async function fetchAndUpdate() {
+      const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQn_XSyS8DIfkZfQr8g1NDN4ZJLeO3LnOR87tOj3d1GybMhUCS0gtyyyKcvUshmFfGefofdlYcuDlqI/pub?output=csv";
       try {
-        const res = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vQn_XSyS8DIfkZfQr8g1NDN4ZJLeO3LnOR87tOj3d1GybMhUCS0gtyyyKcvUshmFfGefofdlYcuDlqI/pub?output=csv');
-        const text = await res.text();
-        const rows = text.trim().split('\n').slice(1); // Skip header
-        const tbody = document.querySelector('#qso-log tbody');
-        tbody.innerHTML = '';
+        const response = await fetch(url);
+        const data = await response.text();
+        const rows = data.trim().split("\n").slice(1); // skip header
+        const tableBody = document.querySelector("#qso-log tbody");
+        tableBody.innerHTML = "";
+        for (const row of rows) {
+          const columns = row.split(",");
+          const tr = document.createElement("tr");
 
-        rows.forEach(row => {
-          const cols = row.split(',');
-          const tr = document.createElement('tr');
+          // Insert each column with a blank td after it
+          for (let i = 0; i < columns.length; i++) {
+            const td = document.createElement("td");
+            td.textContent = columns[i];
+            tr.appendChild(td);
 
-          // Add each column with a spacer column
-          for (let i = 0; i < cols.length; i++) {
-            const tdData = document.createElement('td');
-            tdData.textContent = cols[i];
-            const tdGap = document.createElement('td');
-            tdGap.innerHTML = ''; // Spacer
-            tr.appendChild(tdData);
-            if (i < cols.length - 1) tr.appendChild(tdGap); // No gap after last column
+            // Add blank column between each main one (except last)
+            if (i < columns.length - 1) {
+              const gap = document.createElement("td");
+              gap.innerHTML = "";
+              tr.appendChild(gap);
+            }
           }
 
-          tbody.appendChild(tr);
-        });
-      } catch (err) {
-        console.error('Error fetching CSV:', err);
+          tableBody.appendChild(tr);
+        }
+      } catch (error) {
+        console.error("Error loading CSV:", error);
       }
     }
 
-    fetchCSV();
-    setInterval(fetchCSV, 30000); // refresh every 30s
+    fetchAndUpdate();
+    setInterval(fetchAndUpdate, 30000); // refresh every 30 seconds
   </script>
 </body>
 </html>
