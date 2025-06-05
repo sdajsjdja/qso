@@ -9,46 +9,40 @@
       background: #000;
       color: #0ff;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      margin: 0;
       padding: 20px;
+      text-align: center;
     }
 
     h1 {
-      text-align: center;
       font-size: 2em;
       text-shadow: 0 0 15px #0ff;
       margin-bottom: 20px;
     }
 
-    .container {
+    .content-wrapper {
       display: flex;
-      flex-direction: row;
       justify-content: center;
-      gap: 20px;
+      align-items: flex-start;
       flex-wrap: wrap;
-      max-width: 100%;
+      gap: 20px;
     }
 
     .image-box {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       animation: glowImage 1s infinite alternate;
     }
 
     .image-box img {
-      max-width: 220px;
-      border: 3px solid #00f0ff;
+      width: 200px;
+      height: auto;
+      border: 3px solid #0ff;
       border-radius: 10px;
-      box-shadow: 0 0 15px #00f0ff;
+      box-shadow: 0 0 15px #0ff;
     }
 
     .image-box p {
-      margin-top: 10px;
-      font-weight: bold;
       color: #0ff;
+      margin-top: 5px;
     }
 
     @keyframes glowImage {
@@ -56,12 +50,10 @@
       100% { filter: drop-shadow(0 0 25px #00f0ff); }
     }
 
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      max-width: 1200px;
-      margin: 20px auto;
+    .table-container {
       animation: glowTable 3s infinite alternate;
+      max-width: 100%;
+      overflow-x: auto;
     }
 
     @keyframes glowTable {
@@ -69,79 +61,71 @@
       100% { box-shadow: 0 0 30px #00f0ff; }
     }
 
-    th, td {
-      border: 1px solid #0ff;
-      padding: 8px 12px;
-      text-align: center;
+    table {
+      border-collapse: collapse;
+      margin: 0 auto;
+      color: #0ff;
+      background: #001f2f;
+      min-width: 800px;
     }
 
-    th {
-      background-color: #001f2f;
-      font-weight: bold;
+    th, td {
+      border: 1px solid #0ff;
+      padding: 8px;
     }
 
     td:empty {
-      background-color: transparent;
       border: none;
+      background: transparent;
     }
 
     @media (max-width: 768px) {
-      .container {
+      .content-wrapper {
         flex-direction: column;
         align-items: center;
       }
 
-      table, thead, tbody, th, td, tr {
-        display: block;
-      }
-
-      th, td {
-        text-align: left;
-        border: none;
-        padding: 10px;
-      }
-
-      td {
-        border-bottom: 1px solid #0ff;
+      .table-container {
+        overflow-x: visible;
       }
 
       table {
-        animation: none;
-        box-shadow: none;
-      }
-
-      .image-box {
-        animation: none;
-        margin-bottom: 10px;
+        width: 100%;
+        min-width: auto;
       }
     }
   </style>
 </head>
 <body>
   <h1>26-CT-1664 - GEORGE'S QSO LOG</h1>
-  <div class="container">
+
+  <div class="content-wrapper">
     <div class="image-box">
-      <img src="https://i.postimg.cc/ryfF6F9B/494740562-1046815160662024-7184481897838236543-n.jpg" alt="Antenna">
+      <img src="https://i.postimg.cc/ryfF6F9B/494740562-1046815160662024_7184481897838236543_n.jpg" alt="Antenna">
       <p>Antenna</p>
     </div>
-    <table id="qsoTable">
-      <thead>
-        <tr>
-          <th>Date</th><th></th>
-          <th>Time</th><th></th>
-          <th>Location</th><th></th>
-          <th>Contact Name</th><th></th>
-          <th>Frequency</th><th></th>
-          <th>Mode</th><th></th>
-          <th>My Signal</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td colspan="13" style="text-align:center;">Loading data...</td></tr>
-      </tbody>
-    </table>
+
+    <div class="table-container">
+      <table id="qsoTable">
+        <thead>
+          <tr>
+            <th>Date</th><th></th>
+            <th>Time</th><th></th>
+            <th>Location</th><th></th>
+            <th>County</th><th></th>
+            <th>Frequency</th><th></th>
+            <th>Mode</th><th></th>
+            <th>My Signal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="13">Loading data...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
     <div class="image-box">
-      <img src="https://i.postimg.cc/hGmfcWG9/495291255-1051152326894974-7591054905816117297-n.jpg" alt="Rig">
+      <img src="https://i.postimg.cc/hGmfcWG9/495291255-1051152326894974_7591054905816117297_n.jpg" alt="Rig">
       <p>Rig</p>
     </div>
   </div>
@@ -152,8 +136,7 @@
       try {
         const response = await fetch(url);
         const data = await response.text();
-        const rows = data.split('\n').slice(1); // skip header
-
+        const rows = data.split('\\n').slice(1);
         const tableBody = document.querySelector('#qsoTable tbody');
         tableBody.innerHTML = '';
 
@@ -163,23 +146,23 @@
 
           const html = `
             <tr>
-              <td>${cols[0] || ''}</td><td></td>
-              <td>${cols[1] || ''}</td><td></td>
-              <td>${cols[2] || ''}</td><td></td>
-              <td>${cols[3] || ''}</td><td></td>
-              <td>${cols[4] || ''}</td><td></td>
-              <td>${cols[5] || ''}</td><td></td>
-              <td>${cols[6] || ''}</td>
+              <td>${cols[0]}</td><td></td>
+              <td>${cols[1]}</td><td></td>
+              <td>${cols[2]}</td><td></td>
+              <td>${cols[3]}</td><td></td>
+              <td>${cols[4]}</td><td></td>
+              <td>${cols[5]}</td><td></td>
+              <td>${cols[6]}</td>
             </tr>`;
           tableBody.innerHTML += html;
         });
       } catch (err) {
-        console.error("Error fetching CSV:", err);
+        console.error(\"Error fetching CSV:\", err);
       }
     }
 
     fetchAndUpdate();
-    setInterval(fetchAndUpdate, 120000); // every 2 min
+    setInterval(fetchAndUpdate, 120000);
   </script>
 </body>
 </html>
