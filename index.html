@@ -1,315 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>GEORGES QSO LOG - 26-CT-1664</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
-
-  body {
-    margin: 0;
-    background: #0a0f1f;
-    color: #00ffff;
-    font-family: 'Orbitron', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    padding: 20px;
-  }
-
-  .container {
-    display: flex;
-    gap: 30px;
-    max-width: 1200px;
-    width: 100%;
-    align-items: flex-start;
-  }
-
-  /* Side Images */
-  .side-image {
-    max-width: 150px;
-    max-height: 220px;
-    border: 3px solid #00ffff;
-    border-radius: 12px;
-    box-shadow:
-      0 0 15px #00ffff,
-      0 0 30px #00ffff88 inset;
-    animation: fastFlash 1.2s infinite;
-    object-fit: contain;
-  }
-
-  /* Labels next to images */
-  .label {
-    color: #00ffff;
-    text-align: center;
-    font-weight: 700;
-    margin-top: 8px;
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-    font-family: 'Orbitron', sans-serif;
-  }
-
-  .side-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  /* QSO Log Table Container */
-  .qso-container {
-    flex: 1;
-    overflow: visible; /* no horizontal scroll on desktop */
-    background: #001022;
-    padding: 15px 20px;
-    border-radius: 12px;
-    box-shadow:
-      0 0 25px #00ffff99,
-      inset 0 0 40px #00ffff44;
-  }
-
-  h1 {
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 20px;
-    color: #00ffff;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 700;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 16px 12px; /* gap between columns & rows */
-    table-layout: auto;
-    color: #00e5ff;
-  }
-
-  thead tr th {
-    padding: 10px 12px;
-    font-weight: 700;
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    border-bottom: 2px solid #00ffff;
-    letter-spacing: 1px;
-    text-align: left;
-  }
-
-  /* Spacer columns */
-  .spacer {
-    width: 16px;
-    background: transparent;
-    border: none;
-    box-shadow: none;
-  }
-
-  tbody tr td {
-    padding: 8px 12px;
-    background: linear-gradient(145deg, #0ff9ff33, #00ffff88);
-    border: 1.5px solid #00ffff;
-    border-radius: 8px;
-    box-shadow:
-      0 0 8px #00ffffcc,
-      0 0 15px #0ff,
-      inset 0 0 6px #00ffffaa;
-    font-weight: 500;
-    color: #00e5ff;
-    animation: slowFlash 4s infinite;
-    white-space: nowrap;
-  }
-
-  /* Flash animations */
-  @keyframes slowFlash {
-    0%, 100% {
-      box-shadow:
-        0 0 8px #00ffffcc,
-        0 0 15px #0ff,
-        inset 0 0 6px #00ffffaa;
-    }
-    50% {
-      box-shadow:
-        0 0 15px #00ffffee,
-        0 0 30px #0ff,
-        inset 0 0 10px #00ffffdd;
-    }
-  }
-
-  @keyframes fastFlash {
-    0%, 100% {
-      box-shadow:
-        0 0 20px #00ffffdd,
-        0 0 35px #0ff,
-        inset 0 0 15px #00ffffff;
-    }
-    50% {
-      box-shadow:
-        0 0 40px #00ffffff,
-        0 0 50px #0ff,
-        inset 0 0 20px #00ffffee;
-    }
-  }
-
-  /* Responsive for Mobile */
-  @media (max-width: 800px) {
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>26-CT-1664 - GEORGE'S QSO LOG</title>
+  <style>
     body {
-      padding: 10px;
-    }
-    .container {
+      background: #000;
+      color: #0ff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 20px;
+      padding: 20px;
     }
-    .side-container {
-      flex-direction: row;
-      gap: 20px;
+
+    h1 {
+      text-align: center;
+      font-size: 2em;
+      text-shadow: 0 0 15px #0ff;
+      margin-bottom: 20px;
     }
-    .side-image {
-      max-width: 120px;
-      max-height: 180px;
-      animation: fastFlash 1.2s infinite;
-    }
-    .qso-container {
-      width: 100%;
-      overflow-x: visible;
-      box-shadow: none;
-      background: transparent;
-      padding: 0;
-    }
-    table {
-      border-spacing: 12px 8px;
-      font-size: 0.9rem;
-    }
-    tbody tr td {
-      white-space: normal; /* wrap on mobile */
-      animation: none;
-      box-shadow: none;
-      background: #002233aa;
-      border: 1px solid #00bbbb;
-      border-radius: 6px;
-      color: #00cccc;
-    }
-    /* Stack QSO columns under images on mobile */
+
     .container {
-      flex-direction: column;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      max-width: 100%;
     }
-  }
-</style>
+
+    .image-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: glowImage 1s infinite alternate;
+    }
+
+    .image-box img {
+      max-width: 220px;
+      border: 3px solid #00f0ff;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #00f0ff;
+    }
+
+    .image-box p {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #0ff;
+    }
+
+    @keyframes glowImage {
+      0% { filter: drop-shadow(0 0 5px #00f0ff); }
+      100% { filter: drop-shadow(0 0 25px #00f0ff); }
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 1200px;
+      margin: 20px auto;
+      animation: glowTable 3s infinite alternate;
+    }
+
+    @keyframes glowTable {
+      0% { box-shadow: 0 0 10px #00f0ff; }
+      100% { box-shadow: 0 0 30px #00f0ff; }
+    }
+
+    th, td {
+      border: 1px solid #0ff;
+      padding: 8px 12px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #001f2f;
+      font-weight: bold;
+    }
+
+    td:empty {
+      background-color: transparent;
+      border: none;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+
+      th, td {
+        text-align: left;
+        border: none;
+        padding: 10px;
+      }
+
+      td {
+        border-bottom: 1px solid #0ff;
+      }
+
+      table {
+        animation: none;
+        box-shadow: none;
+      }
+
+      .image-box {
+        animation: none;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <h1>26-CT-1664 - GEORGE'S QSO LOG</h1>
   <div class="container">
-    <!-- Left Image -->
-    <div class="side-container">
-      <img
-        src="https://i.postimg.cc/ryfF6F9B/494740562-1046815160662024-7184481897838236543-n.jpg"
-        alt="Antenna"
-        class="side-image"
-      />
-      <div class="label">Antenna</div>
+    <div class="image-box">
+      <img src="https://i.postimg.cc/ryfF6F9B/494740562-1046815160662024-7184481897838236543-n.jpg" alt="Antenna">
+      <p>Antenna</p>
     </div>
-
-    <!-- QSO Log Table -->
-    <div class="qso-container">
-      <h1>GEORGES QSO LOG - 26-CT-1664</h1>
-      <table id="qso-table">
-        <thead>
-          <tr>
-            <th>Date</th><th>Time</th><th class="spacer"></th>
-            <th>Name</th><th class="spacer"></th>
-            <th>County</th><th class="spacer"></th>
-            <th>Frequency</th><th class="spacer"></th>
-            <th>Mode</th><th class="spacer"></th>
-            <th>My Signal</th><th class="spacer"></th>
-            <th>Contact</th>
-          </tr>
-        </thead>
-        <tbody id="qso-body">
-          <!-- Data rows inserted here -->
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Right Image -->
-    <div class="side-container">
-      <img
-        src="https://i.postimg.cc/hGmfcWG9/495291255-1051152326894974-7591054905816117297-n.jpg"
-        alt="Rig"
-        class="side-image"
-      />
-      <div class="label">Rig</div>
+    <table id="qsoTable">
+      <thead>
+        <tr>
+          <th>Date</th><th></th>
+          <th>Time</th><th></th>
+          <th>Location</th><th></th>
+          <th>Contact Name</th><th></th>
+          <th>Frequency</th><th></th>
+          <th>Mode</th><th></th>
+          <th>My Signal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td colspan="13" style="text-align:center;">Loading data...</td></tr>
+      </tbody>
+    </table>
+    <div class="image-box">
+      <img src="https://i.postimg.cc/hGmfcWG9/495291255-1051152326894974-7591054905816117297-n.jpg" alt="Rig">
+      <p>Rig</p>
     </div>
   </div>
 
-<script>
-  const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQn_XSyS8DIfkZfQr8g1NDN4ZJLeO3LnOR87tOj3d1GybMhUCS0gtyyyKcvUshmFfGefofdlYcuDlqI/pub?output=csv";
+  <script>
+    async function fetchAndUpdate() {
+      const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQn_XSyS8DIfkZfQr8g1NDN4ZJLeO3LnOR87tOj3d1GybMhUCS0gtyyyKcvUshmFfGefofdlYcuDlqI/pub?output=csv";
+      try {
+        const response = await fetch(url);
+        const data = await response.text();
+        const rows = data.split('\n').slice(1); // skip header
 
-  async function fetchAndUpdate() {
-    try {
-      const res = await fetch(csvUrl);
-      if (!res.ok) throw new Error('Network response was not ok');
-      const csvText = await res.text();
+        const tableBody = document.querySelector('#qsoTable tbody');
+        tableBody.innerHTML = '';
 
-      // Parse CSV
-      const rows = csvText.trim().split('\n').map(line => line.split(','));
+        rows.forEach(row => {
+          const cols = row.split(',');
+          if (cols.length < 7) return;
 
-      // Remove header row from CSV if present (assuming first row header)
-      if(rows.length && rows[0][0].toLowerCase().includes('date')) {
-        rows.shift();
-      }
-
-      const tbody = document.getElementById('qso-body');
-      tbody.innerHTML = '';
-
-      rows.forEach(row => {
-        // Expecting columns: Date, Time, Name, County, Frequency, Mode, My Signal, Contact
-        if(row.length < 8) return; // skip incomplete rows
-
-        // Create a table row
-        const tr = document.createElement('tr');
-
-        // Columns with spacer after each except last
-        const columns = [
-          row[0], // Date
-          row[1], // Time
-          null,   // spacer
-          row[2], // Name
-          null,   // spacer
-          row[3], // County
-          null,   // spacer
-          row[4], // Frequency
-          null,   // spacer
-          row[5], // Mode
-          null,   // spacer
-          row[6], // My Signal
-          null,   // spacer
-          row[7]  // Contact
-        ];
-
-        columns.forEach(cellData => {
-          const td = document.createElement('td');
-          if(cellData === null) {
-            td.className = 'spacer';
-            td.innerHTML = '&nbsp;';
-          } else {
-            td.textContent = cellData;
-          }
-          tr.appendChild(td);
+          const html = `
+            <tr>
+              <td>${cols[0] || ''}</td><td></td>
+              <td>${cols[1] || ''}</td><td></td>
+              <td>${cols[2] || ''}</td><td></td>
+              <td>${cols[3] || ''}</td><td></td>
+              <td>${cols[4] || ''}</td><td></td>
+              <td>${cols[5] || ''}</td><td></td>
+              <td>${cols[6] || ''}</td>
+            </tr>`;
+          tableBody.innerHTML += html;
         });
-
-        tbody.appendChild(tr);
-      });
-    } catch (error) {
-      console.error('Error loading CSV:', error);
-      const tbody = document.getElementById('qso-body');
-      tbody.innerHTML = '<tr><td colspan="15" style="color:#f00; text-align:center;">Error loading data</td></tr>';
+      } catch (err) {
+        console.error("Error fetching CSV:", err);
+      }
     }
-  }
 
-  fetchAndUpdate();
-  // Update every 2 minutes
-  setInterval(fetchAndUpdate, 120000);
-</script>
+    fetchAndUpdate();
+    setInterval(fetchAndUpdate, 120000); // every 2 min
+  </script>
 </body>
 </html>
